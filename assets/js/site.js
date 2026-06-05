@@ -102,6 +102,7 @@
   // ----- Publication Year Badges -----
 
   document.querySelectorAll('.pub-entry').forEach(function (entry) {
+    if (entry.querySelector('.year-badge')) return;
     var text = entry.textContent;
     // Match a 4-digit year in parentheses, common in citation format
     var match = text.match(/\((\d{4})\)/);

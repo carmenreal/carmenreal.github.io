@@ -2,10 +2,58 @@
 ---
 
 <div class="pub-entry" data-pub-searchable>
-  <div class="text-justify">{{ reference }}</div>
+  {% comment %} Optional thumbnail: set an `image` field in your .bib (e.g. image = {myfile.jpg}) and put the file in /images/ {% endcomment %}
+  <div class="pub-inner d-flex">
+    {% if entry.image %}
+    <div class="pub-thumb-wrapper">
+      <img src="{{ site.baseurl }}/images/{{ entry.image }}" alt="{{ entry.title }}" class="pub-thumb">
+    </div>
+    {% endif %}
+    <div class="pub-body">
+      {% if entry.year %}
+      <span class="year-badge">{{ entry.year }}</span>
+      {% endif %}
+      {% if entry.title %}
+      <div class="pub-title"><strong>{{ entry.title }}</strong></div>
+      {% endif %}
+      <div class="text-justify">
+        {% if entry.title %}
+          {% assign formatted_reference = reference | replace_first: entry.title, '' | strip %}
+        {% else %}
+          {% assign formatted_reference = reference %}
+        {% endif %}
 
-  <!-- You can use the below to make your name bold -->
-  <!-- <div class="text-justify">{{ reference | replace_first: 'Bryngelson, S. H.', '<b>Bryngelson, S. H.</b>' }}</div> -->
+        {% if entry.year %}
+          {% assign year_token = ' (' | append: entry.year | append: ').' %}
+          {% assign formatted_reference = formatted_reference | replace_first: year_token, '' %}
+          {% assign year_token = ' (' | append: entry.year | append: ')' %}
+          {% assign formatted_reference = formatted_reference | replace_first: year_token, '' %}
+        {% endif %}
+
+        {% if entry.doi %}
+          {% assign doi_url = 'https://doi.org/' | append: entry.doi %}
+          {% assign formatted_reference = formatted_reference | replace_first: doi_url, '' %}
+          {% assign doi_url = 'http://doi.org/' | append: entry.doi %}
+          {% assign formatted_reference = formatted_reference | replace_first: doi_url, '' %}
+          {% assign formatted_reference = formatted_reference | replace_first: entry.doi, '' %}
+        {% endif %}
+
+        {% if entry.booktitle %}
+          {% assign book_replacement = '<br>' | append: entry.booktitle %}
+          {% assign formatted_reference = formatted_reference | replace_first: entry.booktitle, book_replacement %}
+        {% elsif entry.journal %}
+          {% assign journal_replacement = '<br>' | append: entry.journal %}
+          {% assign formatted_reference = formatted_reference | replace_first: entry.journal, journal_replacement %}
+        {% endif %}
+
+        {%- comment -%} Bold common author name variants before removing the author from the formatted reference {%- endcomment -%}
+        <!-- {% assign formatted_reference = formatted_reference | replace_first: 'Carmen Real', '<strong>Carmen Real</strong>' %}
+        {% assign formatted_reference = formatted_reference | replace_first: 'C. Real', '<strong>C. Real</strong>' %}
+        {% assign formatted_reference = formatted_reference | replace_first: 'Real, Carmen', '<strong>Real, Carmen</strong>' %}
+        {% assign formatted_reference = formatted_reference | replace_first: 'Real, C.', '<strong>Real, C.</strong>' %} -->
+
+        {{ formatted_reference | strip }}
+      </div>
 
   {% assign bibtest = false %}
   {% if entry.file %}
@@ -49,9 +97,11 @@
   </div>
   {% endif %}
 
-  {% if entry.abstract %}
-  <div class="pub-collapse" id="abs-{{ entry.key }}">
-    <pre>{{ entry.abstract }}</pre>
+    {% if entry.abstract %}
+    <div class="pub-collapse" id="abs-{{ entry.key }}">
+      <pre>{{ entry.abstract }}</pre>
+    </div>
+    {% endif %}
+    </div>
   </div>
-  {% endif %}
 </div>

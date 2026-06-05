@@ -19,17 +19,31 @@ permalink: /about/
 {% if site.links.google_scholar and site.links.google_scholar != "" %}<a href="{{ site.links.google_scholar }}" class="icon-link" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>{% endif %}
 {% if site.links.github and site.links.github != "" %}<a href="{{ site.links.github }}" class="icon-link" title="GitHub"><i class="fa-brands fa-github"></i></a>{% endif %}
 {% if site.links.researchgate and site.links.researchgate != "" %}<a href="{{ site.links.researchgate }}" class="icon-link" title="ResearchGate"><i class="ai ai-researchgate"></i></a>{% endif %}
+{% if site.links.orcid and site.links.orcid != "" %}<a href="{{ site.links.orcid }}" class="icon-link" title="ORCID"><i class="ai ai-orcid"></i></a>{% endif %}
+{% if site.links.twitter and site.links.twitter != "" %}<a href="{{ site.links.twitter }}" class="icon-link" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>{% endif %}
+{% if site.links.linkedin and site.links.linkedin != "" %}<a href="{{ site.links.linkedin }}" class="icon-link" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>{% endif %}
 </div>
+</div>
+</div>
+</div>
+
 {% if site.data.pi[0].education %}
-<ul style="margin-top: var(--space-4);">
+<div class="section-card">
+<h3>Education</h3>
+<div class="education-grid">
 {% for education in site.data.pi[0].education %}
-<li>{{ education | replace: "-","&#8211;" }}</li>
-{% endfor %}
-</ul>
+<div class="education-card">
+{% if education.image %}
+<img src="{{ site.baseurl }}/images/{{ education.image }}" alt="Education image" class="education-card-img">
 {% endif %}
+<div class="education-card-body">
+{{ education.text | default: education | replace: "-","&#8211;" | markdownify }}
 </div>
 </div>
+{% endfor %}
 </div>
+</div>
+{% endif %}
 
 {% if site.data.grants %}
 <div class="section-card">
