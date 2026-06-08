@@ -3,6 +3,7 @@ title: "Home"
 layout: homelay
 sitemap: false
 permalink: /
+bibliography_style: preview
 ---
 
 <h2 class="home-hero">{{ site.name }}</h2>
@@ -35,6 +36,14 @@ Research in theoretical physics helps us to make predictions about how the unive
 ### About me
 
 I am Carmen, a Master’s student in Robotics, Graphics and Computer Vision at the University of Zaragoza. My final thesis focuses on audiovisual attention-driven audio enhancement for immersive 360° environments. I previously earned my Computer Science degree at the same university, and I am especially interested in multimodal perception, and perceptually adaptive systems.
+
+<div class="short-pubs">
+
+### Latest publications
+
+{% bibliography --query @* --limit 5 %}
+
+</div>
 
 {% if site.data.news and site.data.news.size > 0 %}
 <div class="news">

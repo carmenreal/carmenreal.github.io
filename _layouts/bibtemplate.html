@@ -1,5 +1,13 @@
 ---
 ---
+{% if page.bibliography_style == "preview" %}
+
+<div class="pub-preview">
+  <div class="pub-preview-year">{{ entry.year }}</div>
+  <div class="pub-preview-title">{{ entry.title }}</div>
+</div>
+
+{% else %}
 
 <div class="pub-entry" data-pub-searchable>
   {% comment %} Optional thumbnail: set an `image` field in your .bib (e.g. image = {myfile.jpg}) and put the file in /images/ {% endcomment %}
@@ -105,3 +113,4 @@
     </div>
   </div>
 </div>
+{% endif %}

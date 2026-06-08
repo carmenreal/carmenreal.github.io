@@ -135,3 +135,32 @@
     line-height: 1.5;
   }
 }
+
+.short-pubs {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  // border-top: 1px solid var(--border-color);
+}
+
+.pub-preview {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-color);
+
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: var(--space-3);
+}
+
+.pub-preview-year {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.pub-preview-title {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
