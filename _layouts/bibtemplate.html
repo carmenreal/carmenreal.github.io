@@ -86,6 +86,10 @@
       {% endif %}
     {% endif %}
 
+    {% if entry.project_url %}
+    <a class="btn-pill btn-proj-page" href="{{ entry.project_url  }}" target="_blank">Web</a>
+    {% endif %}
+
     {% if entry.type == 'unpublished' or entry.type == 'article' or entry.type == 'thesis' or entry.type == 'inproceedings' or entry.type == 'report' %}
     <button class="btn-pill btn-bib" data-toggle-target="bib-{{ entry.key }}">BIB</button>
     {% endif %}

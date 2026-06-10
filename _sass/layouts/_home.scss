@@ -11,6 +11,10 @@
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: var(--space-8);
+
+    /* On narrow viewports place the sidebar above the content */
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 
@@ -56,7 +60,7 @@
 @media (min-width: 769px) {
   .home-sidebar {
     position: sticky;
-    top: calc(var(--space-6) + 1rem);
+    top: calc(var(--navbar-height, 3.75rem) + var(--space-6) + 1rem);
     align-self: start;
   }
 }
@@ -148,7 +152,7 @@
 
   display: grid;
   grid-template-columns: 60px 1fr;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .pub-preview-year {
@@ -163,4 +167,141 @@
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--text-secondary);
+}
+
+//Service
+.comunity-service{
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  // border-top: 1px solid var(--border-color);
+}
+.service-timeline {
+  margin-top: 0;
+  // padding: var(--space-2) 0; /* smaller vertical padding */
+
+  .service-item {
+    padding: var(--space-2) 0;
+    // border-bottom: 1px solid var(--border-color);
+
+    &:last-child {
+      // border-bottom: none;
+      margin-bottom: 1.5em;
+    }
+
+    
+  }
+
+  .service-headline {
+    margin-top: var(--space-1);
+    padding-left: var(--space-8);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
+
+// .comunity-service .service-item:last-of-type {
+//   border-bottom: none;
+// }
+
+.service-type {
+  border-left: 3px solid var(--service-accent, var(--color-accent));
+  padding-left: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  // &::before {
+  //   content: "";
+  //   width: 0.5rem;
+  //   height: 0.5rem;
+  //   background: var(--service-accent, var(--color-accent));
+  //   border-radius: 50%;
+  //   transform: translateX(-0.25rem);
+  // }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.5rem;                     // offset where left stripe begins
+    bottom: 0;
+    width: 3px;
+    background: var(--service-accent, var(--color-accent));
+    border-radius: 2px;
+  }
+}
+
+.service-type + .service-timeline .service-item:first-child {
+  padding-top: 0rem; /* shrink top padding */
+}
+
+.service-desired {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem;
+  align-items: center;
+}
+
+.service-desired__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.22rem 0.6rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  box-shadow: none;
+  margin-left:1.5em;
+}
+
+.service-desired__badge--primary {
+  color: var(--color-heading, #222);
+  border-color: var(--color-accent, #2b7cff);
+  background: color-mix(in srgb, var(--color-accent, #2b7cff) 8%, transparent);
+}
+
+/* Dark-mode override: ensure badge text contrasts on dark backgrounds */
+[data-bs-theme="dark"] {
+  .service-desired__badge--primary {
+    color: var(--text-primary);
+    border-color: color-mix(in srgb, var(--color-accent, #2b7cff) 30%, transparent);
+    background: color-mix(in srgb, var(--color-accent, #2b7cff) 12%, transparent);
+  }
+}
+
+@media (max-width: 768px) {
+  .service-desired { gap: 0.35rem; }
+  .service-desired__badge { padding: 0.18rem 0.45rem; font-size: 0.65rem; }
+}
+
+/* When the sidebar is shown above the content on small screens,
+   hide the large hero name and subtitle to reduce repetition */
+@media (max-width: 768px) {
+  .home-hero,
+  .home-hero-sub {
+    display: none;
+  }
+}
+
+/* Make the sidebar fit or centered when it appears above content */
+@media (max-width: 768px) {
+  .home-sidebar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .home-sidebar .profile-card {
+    /* Allow the card to grow to available space but cap its width */
+    width: min(100%, 600px);
+    box-sizing: border-box;
+  }
 }

@@ -45,12 +45,81 @@ I am Carmen, a Master’s student in Robotics, Graphics and Computer Vision at t
 
 </div>
 
+{% if site.data.service and site.data.service.size > 0 %}
+<div class="comunity-service">
+### Professional Service
+
+{% assign reviews = site.data.service | where: "service", "reviewer" | sort: "year" | reverse %}
+{% if reviews.size > 0 %}
+<h4 class="service-type" style="--service-accent: {{ '#A98743' | default: '#2b7cff' }};">Reviewer</h4>
+<div class="service-timeline" markdown="0">
+{% assign desired = "journal|conference" | split: "|" %}
+
+{% for t in desired %}
+  {% assign items = reviews | where: "type", t %}
+  {% if items.size > 0 %}
+    <div class="service-item">
+      <div class="service-desired">
+      <span class="service-desired__badge service-desired__badge--primary" style="--color-accent: {{ '#A98743' | default: '#2b7cff' }};">{{ t | capitalize }}</span>
+      <!-- <span class="service-desired__badge">{{ t | capitalize }}</span> -->
+      </div>
+      <div class="service-list" markdown="0">
+        {% for article in items %}
+          <div class="service-headline">{{ article.name }}{% if article.year %}<span class="service-year"> — {{ article.year }}</span>{% endif %}</div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+
+{% assign types = reviews | map: "type" | uniq %}
+{% for t in types %}
+  {% unless desired contains t %}
+    {% assign items = reviews | where: "type", t %}
+    {% if items.size > 0 %}
+      <div class="service-item">
+        <div class="service-desired">
+        <span class="service-desired__badge service-desired__badge--primary" style="--color-accent: {{ '#A98743' | default: '#2b7cff' }};">{{ t | capitalize }}</span>
+        <!-- <span class="service-desired__badge">{{ t | capitalize }}</span> -->
+        </div>
+        <div class="service-list" markdown="0">
+          {% for article in items %}
+            <div class="service-headline">{{ article.name }}{% if article.year %}<span class="service-year"> — {{ article.year }}</span>{% endif %}</div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+</div>
+{% endif %}
+
+{% assign volunteer = site.data.service | where: "service", "student volunteer" | sort: "year" | reverse %}
+{% if volunteer.size > 0 %}
+<h4 class="service-type" style="--service-accent: {{ '#CD5D67' | default: '#2b7cff' }};">Student Volunteer</h4>
+<div class="service-timeline" markdown="0">
+  <div class="service-item">
+    <div class="service-list" markdown="0">
+      {% for article in volunteer %}
+        <div class="service-headline">
+        {{ article.name }}{% if article.year %}<span class="service-year"> — {{ article.year }}</span>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+</div>
+{% endif %}
+
 {% if site.data.news and site.data.news.size > 0 %}
 <div class="news">
 <!-- <h4 style="margin-top: 0;">News</h4> -->
 ### News
 <div class="news-timeline" markdown="0">
-{% for article in site.data.news limit:3 %}
+{% for article in site.data.news %}
 <div class="news-item">
   <div class="news-date">{{ article.date }}</div>
   <div class="news-headline">{{ article.headline }}</div>

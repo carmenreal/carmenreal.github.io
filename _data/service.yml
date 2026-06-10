@@ -1,0 +1,17 @@
+# Profesional sevice items shown on the home page.
+# Each entry needs: type, headline
+
+- year: 2026
+  service: reviewer
+  type: conferences
+  name: ACM Symposium on Applied Perception (SAP)
+
+# - year: 2024
+#   service: reviewer
+#   type: journals
+#   name: A
+
+# - year: 2025
+#   service: student volunteer
+#   type: ""
+#   name: B

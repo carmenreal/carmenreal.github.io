@@ -28,6 +28,14 @@
     &:hover { opacity: 0.85; color: var(--bg-primary); }
   }
 
+  &.btn-proj-page {
+    background-color: #F06449;
+    // background-color: #D36135;
+    color: var(--bg-primary);
+    &:hover { opacity: 0.85; color: #F06449; }
+    // &:hover { opacity: 0.85; color: #D36135; }
+  }
+
   &.btn-arxiv {
     background-color: #b31b1b;
     color: #fff;
