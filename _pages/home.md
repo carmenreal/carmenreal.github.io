@@ -35,7 +35,7 @@ Research in theoretical physics helps us to make predictions about how the unive
 <div class="section-card" style="margin-top: var(--space-6);">
 ### About me
 
-I am Carmen, a Master’s student in Robotics, Graphics and Computer Vision at the University of Zaragoza. My final thesis focuses on audiovisual attention-driven audio enhancement for immersive 360° environments. I previously earned my Computer Science degree at the same university, and I am especially interested in multimodal perception, and perceptually adaptive systems.
+I am a PhD student at [Graphics and Imaging Lab](https://graphics.unizar.es/) under the supervision of [Ana Serrano Pacheu](https://ana-serrano.github.io/) and [Belén Masiá Corcoy](https://webdiis.unizar.es/~bmasia/). I completed my Bachelor's degree in Computer Science and my Master's degree in Robotics, Graphics and Computer Vision at Universidad de Zaragoza (Spain). My research interests are include multimodal perception, and perceptually adaptive systems.
 
 <div class="short-pubs">
 
